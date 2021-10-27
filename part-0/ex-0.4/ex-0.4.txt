@@ -1,0 +1,38 @@
+user->browser: Enter the name of the Note and Click the Save Button
+
+note over user:
+When user clicks the button 
+The Data Will be procced to the server
+and update the JSON Object
+end note;
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+server-->browser: Add The Value from the post request to https://studies.cs.helsinki.fi/exampleapp/data.json
+
+note over server:
+The server updates the JSON data 
+and redirect to notes page 
+With the new JSON data
+end note;
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: HTML-code
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+
+note over browser:
+browser starts executing js-code
+that requests JSON data from server 
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [..., {"content": new Note, "date": the_excat_time_the_user_clicks_save }]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+end note
